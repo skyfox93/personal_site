@@ -2,6 +2,12 @@ h1 {
 margin:10px;
 }
 
+.subtitle{
+  width:100%;
+  display:flex;
+  align-content: center;
+  justify-content:center;
+}
 
 .description {
   min-width:100%;

@@ -110,11 +110,12 @@ window.onscroll = function(e) {
      let diff=banner.offsetHeight-document.body.scrollTop
       if(diff<60){diff=60}
       banner.style.height=diff+'px';
-      let fontsize=banner.offsetHeight/10+'px'
+      console.log('diff',diff)
+      let fontsize=banner.offsetHeight/10
       title.style.fontSize=fontsize>12 ? fontsize+'px': '12px';
       document.body.scrollTop=0;
     }
-      else{banner.style.height=''; banner.className='title-banner-fixed'; desc.style.display='none';
+      else{banner.style.height=''; banner.className='title-banner-fixed';debugger; desc.style.display='none';
     }
   }
 }
