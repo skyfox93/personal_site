@@ -129,9 +129,9 @@ window.onscroll = function(e) {
       console.log('diff',diff)
       let fontsize=banner.offsetHeight/10
       title.style.fontSize=fontsize>12 ? fontsize+'px': '12px';
+      document.body.scrollTop=0;
     }
-      else {
-        debugger
+      else if(document.body.scrollTop>=lastScroll) {
         banner.className='title-banner-fixed';banner.style.height=''; desc.style.display='none';
       spacer.className='spacer';
     }
