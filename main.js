@@ -14,7 +14,7 @@ let projects= [
    description:'Complete a list, collect a kitten' ,
    title:'TaskKittens',
    url: null,
-   videoURL:"./images/spinoff.m4v",
+   videoURL:"https://player.vimeo.com/video/331912608?byline=0&portrait=0",
    imageURL:null,
    code: null
  },
