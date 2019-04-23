@@ -42,7 +42,7 @@ body{padding:0;
   color:white;background-size: cover;background-position: center;
   top:0;
 }
-.nav i {
+.nav a:first-child {
   display:none;
 }
 @media (max-width:950px){
