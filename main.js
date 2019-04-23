@@ -83,6 +83,7 @@ function playVid(e){
     videoContainer.style.display='block'
     videoEl.style.display='block'
     vidPlay=true;
+    nav.className='nav-collapsed'
     document.body.scrollTop=1;
 
  const viewportmeta = document.querySelector('meta[name=viewport]');
@@ -103,7 +104,22 @@ console.log(banner);
 let title=document.querySelector('.title');
 let main=document.querySelector('.main')
 let desc=document.querySelector('.description')
+let nav=document.querySelector('.nav')
+let hamburger=document.querySelector('#hamburger')
+hamburger.addEventListener('click',toggleResponsive);
+let closeNav=document.querySelector('#close-nav')
+closeNav.addEventListener('click',toggleResponsive)
+
 let lastScroll=0;
+
+function toggleResponsive(e){
+  e.preventDefault()
+  console.log('responsive!')
+  nav.className=(
+    nav.className==='nav-responsive' ? 'nav-collapsed':'nav-responsive'
+  )
+}
+
 window.onscroll = function(e) {
     if(banner.offsetHeight>60 &&(!vidPlay)&&(document.body.scrollTop>=lastScroll)){
      let diff=banner.offsetHeight-document.body.scrollTop
@@ -117,5 +133,8 @@ window.onscroll = function(e) {
       else{
         banner.className='title-banner-fixed';banner.style.height=''; desc.style.display='none';
       spacer.style.className='spacer'
+    }
+    if(banner.offsetHeight<130&&banner.className!=='title-banner-fixed' && nav.className!=='nav-active'){
+      nav.className='nav-collapsed'
     }
 }
