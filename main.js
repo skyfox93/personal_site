@@ -49,7 +49,7 @@ function projectHTML(project){
     <div class='card-menu'>
         ${project.videoURL ? `<div
           data-url="${project.videoURL}"
-         class='menu-link video'> Video </div>}`: ''}
+         class='menu-link video'> Video </div>`: ''}
         ${project.url ? `<a href="${project.url}"
         class='menu-link'> Website </a>` : ''}
 
@@ -60,7 +60,9 @@ function projectHTML(project){
 }
 
 function projectReducer(htmlString, project){
+  console.log(projectHTML(project))
     return htmlString+projectHTML(project)
+
 }
 function renderProjects(projects,container){
   let htmlString=projects.reduce(projectReducer,'')
@@ -81,7 +83,12 @@ function playVid(e){
     videoContainer.style.display='block'
     videoEl.style.display='block'
     vidPlay=true;
-    document.body.scrollTop=videoContainer.offsetTop-60;
+    document.body.scrollTop=60;
+
+ const viewportmeta = document.querySelector('meta[name=viewport]');
+ if(viewportmeta){
+   viewportmeta.setAttribute("content", "width=device-width, initial-scale=0, maximum-scale=-0, minimum-scale=0");
+ }
     console.log(videoContainer.offsetTop)
 
 }
@@ -95,22 +102,19 @@ console.log(banner);
 let title=document.querySelector('.title');
 let main=document.querySelector('.main')
 let desc=document.querySelector('.description')
+let lastScroll=0;
 window.onscroll = function(e) {
-  console.log(vidPlay) //true
-  if(banner.offsetHeight>60 &&(!vidPlay)){
-    if(vidPlay){return}
-    console.log('executing') // executes
-   let diff=banner.offsetHeight-document.body.scrollTop
-    if(diff<60){diff=60}
-    //banner.className='title-banner-fixed'
-    banner.style.height=diff+'px';
-    let fontsize=banner.offsetHeight/10+'px'
-
-    title.style.fontSize=fontsize>12 ? fontsize+'px': '12px';
-
-    document.body.scrollTop=0;}
-    else{banner.style.height=''; banner.className='title-banner-fixed'; desc.style.display='none';}
-
+  if(document.body.scrollTop>lastScroll){
+    lastScroll=document.body.scrollTop
+    if(banner.offsetHeight>60 &&(!vidPlay)){
+     let diff=banner.offsetHeight-document.body.scrollTop
+      if(diff<60){diff=60}
+      banner.style.height=diff+'px';
+      let fontsize=banner.offsetHeight/10+'px'
+      title.style.fontSize=fontsize>12 ? fontsize+'px': '12px';
+      document.body.scrollTop=0;
+    }
+      else{banner.style.height=''; banner.className='title-banner-fixed'; desc.style.display='none';
+    }
+  }
 }
-
-  ;

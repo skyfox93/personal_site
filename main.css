@@ -201,6 +201,10 @@ color:white;height:50px;
   }
 
 .menu-link{
+  font-size:1.2em;
+  cursor:pointer;
+  color:darkblue;
+  text-decoration:underline;
   padding:0.25em;
 }
 
