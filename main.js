@@ -84,15 +84,10 @@ function playVid(e){
     videoEl.style.display='block'
     vidPlay=true;
     nav.className='nav-collapsed'
-    document.body.scrollTop=1;
-
- const viewportmeta = document.querySelector('meta[name=viewport]');
- if(viewportmeta){
-   viewportmeta.setAttribute("content", "width=device-width, initial-scale=0, maximum-scale=-0, minimum-scale=0");
- }
-    console.log(videoContainer.offsetTop)
-
-}
+    spacer.className='spacer';
+    document.body.scrollTop=0;
+    banner.style.height='';
+  }
 }
 
 function stopPropagation(e){
@@ -116,23 +111,29 @@ function toggleResponsive(e){
   e.preventDefault()
   console.log('responsive!')
   nav.className=(
-    nav.className==='nav-responsive' ? 'nav-collapsed':'nav-responsive'
+  nav.className==='nav-responsive' ? 'nav-collapsed':'nav-responsive'
   )
 }
 
 window.onscroll = function(e) {
-    if(banner.offsetHeight>60 &&(!vidPlay)&&(document.body.scrollTop>=lastScroll)){
+    if(
+      banner.offsetHeight>60 &&
+      (banner.className!=='title-banner-fixed')&&
+      (document.body.scrollTop>=lastScroll)
+      )
+    {
+      console.log('height adjusted')
      let diff=banner.offsetHeight-document.body.scrollTop
       if(diff<60){diff=60}
       banner.style.height=diff+'px';
       console.log('diff',diff)
       let fontsize=banner.offsetHeight/10
       title.style.fontSize=fontsize>12 ? fontsize+'px': '12px';
-      document.body.scrollTop=0;
     }
-      else{
+      else {
+        debugger
         banner.className='title-banner-fixed';banner.style.height=''; desc.style.display='none';
-      spacer.style.className='spacer'
+      spacer.className='spacer';
     }
     if(banner.offsetHeight<130&&banner.className!=='title-banner-fixed' && nav.className!=='nav-active'){
       nav.className='nav-collapsed'
