@@ -15,14 +15,14 @@ let projects= [
    title:'TaskKittens',
    url: null,
    videoURL:"https://player.vimeo.com/video/331912608?byline=0&portrait=0",
-   imageURL:null,
+   imageURL:'./images/taskkittens.png',
    code: null
  },
  { title: 'Plunk!',
    description: 'Jam with other people in real-time',
    url: 'https://skyfox93-plunk.glitch.me/',
    videoURL:null,
-   imageURUL: null,
+   imageURUL: './images/plunk.png',
    code: null
  }
 
