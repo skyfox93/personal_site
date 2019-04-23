@@ -106,10 +106,10 @@ window.onscroll = function(e) {
     banner.style.height=diff+'px';
     let fontsize=banner.offsetHeight/10+'px'
 
-    title.style.fontSize=fontsize>12 ? fontsize+'px': font;
+    title.style.fontSize=fontsize>12 ? fontsize+'px': '12px';
 
     document.body.scrollTop=0;}
-    else{banner.style.height=''; banner.className='title-banner-fixed'; desc.display=none;}
+    else{banner.style.height=''; banner.className='title-banner-fixed'; desc.style.display='none';}
 
 }
 
