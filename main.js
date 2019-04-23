@@ -83,7 +83,7 @@ function playVid(e){
     videoContainer.style.display='block'
     videoEl.style.display='block'
     vidPlay=true;
-    document.body.scrollTop=60;
+    document.body.scrollTop=1;
 
  const viewportmeta = document.querySelector('meta[name=viewport]');
  if(viewportmeta){
@@ -98,15 +98,14 @@ function stopPropagation(e){
   e.stopPropagation()
 }
 let banner=document.querySelector('.title-banner');
+let spacer=document.querySelector('#spacer')
 console.log(banner);
 let title=document.querySelector('.title');
 let main=document.querySelector('.main')
 let desc=document.querySelector('.description')
 let lastScroll=0;
 window.onscroll = function(e) {
-  if(document.body.scrollTop>lastScroll){
-    lastScroll=document.body.scrollTop
-    if(banner.offsetHeight>60 &&(!vidPlay)){
+    if(banner.offsetHeight>60 &&(!vidPlay)&&(document.body.scrollTop>=lastScroll)){
      let diff=banner.offsetHeight-document.body.scrollTop
       if(diff<60){diff=60}
       banner.style.height=diff+'px';
@@ -115,7 +114,8 @@ window.onscroll = function(e) {
       title.style.fontSize=fontsize>12 ? fontsize+'px': '12px';
       document.body.scrollTop=0;
     }
-      else{banner.style.height=''; banner.className='title-banner-fixed';debugger; desc.style.display='none';
+      else{
+        banner.className='title-banner-fixed';banner.style.height=''; desc.style.display='none';
+      spacer.style.className='spacer'
     }
-  }
 }
