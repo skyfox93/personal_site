@@ -42,8 +42,7 @@ function projectHTML(project){
   return `
   <div class='card'>
     <div class='card-title'>${project.title}</div>
-    <div class='card-image'>
-      <img src='${project.imageURL}'></img>
+    <div class='card-image' style='background-image:url(${project.imageURL})'>
     </div>
     <div class='card-description'> ${project.description}</div>
     <div class='card-menu'>
