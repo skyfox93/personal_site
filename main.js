@@ -23,12 +23,11 @@ let projects= [
  { title: 'Plunk!',
    description: 'Jam with other people in real-time',
    url: 'https://skyfox93-plunk.glitch.me/',
-   videoURL:'https://vimeo.com/332441007',
+   videoURL:"https://player.vimeo.com/video/332441007?portrait=0",
    imageURL: './images/plunk.png',
    code: null,
    tech: 'NodeJS, Socket.io, Javascript'
  }
-
 ]
 
 const projectsContainer=document.querySelector('#projects-container')
