@@ -7,7 +7,8 @@ let projects= [
    title:'ImageEdit',
    url:'https://spinoff.herokuapp.com',
    videoURL:"https://player.vimeo.com/video/331844687?byline=0&portrait=0",
-   imageURL: './images/spinoff.png'
+   imageURL: './images/spinoff.png',
+   tech: 'Ruby on Rails, React, Javascript'
  },
 
  {
@@ -16,14 +17,16 @@ let projects= [
    url: null,
    videoURL:"https://player.vimeo.com/video/331912608?byline=0&portrait=0",
    imageURL:'./images/taskittens2.png',
-   code: null
+   code: null,
+   tech: 'Ruby on Rails, Javascript'
  },
  { title: 'Plunk!',
    description: 'Jam with other people in real-time',
    url: 'https://skyfox93-plunk.glitch.me/',
    videoURL:'https://vimeo.com/332441007',
    imageURL: './images/plunk.png',
-   code: null
+   code: null,
+   tech: 'NodeJS, Socket.io, Javascript'
  }
 
 ]
@@ -45,6 +48,7 @@ function projectHTML(project){
     <div class='card-image' style='background-image:url(${project.imageURL})'>
     </div>
     <div class='card-description'> ${project.description}</div>
+    <div class='built-with'> Built with: ${project.tech} </div>
     <div class='card-menu'>
         ${project.videoURL ? `<div
           data-url="${project.videoURL}"
@@ -97,7 +101,8 @@ let spacer=document.querySelector('#spacer')
 console.log(banner);
 let title=document.querySelector('.title');
 let main=document.querySelector('.main')
-let desc=document.querySelector('.description')
+let desc1=document.querySelectorAll('.description')[0]
+let desc2=document.querySelectorAll('.description')[1]
 let nav=document.querySelector('.nav')
 let hamburger=document.querySelector('#hamburger')
 hamburger.addEventListener('click',toggleResponsive);
@@ -131,10 +136,11 @@ window.onscroll = function(e) {
       document.body.scrollTop=0;
     }
       else if(document.body.scrollTop>=lastScroll) {
-        banner.className='title-banner-fixed';banner.style.height=''; desc.style.display='none';
+        banner.className='title-banner-fixed';banner.style.height=''; desc1.style.display='none';
+        desc2.style.display='none';
       spacer.className='spacer';
     }
-    if(banner.offsetHeight<130&&banner.className!=='title-banner-fixed' && nav.className!=='nav-active'){
+    if(banner.offsetHeight<200&&banner.className!=='title-banner-fixed' && nav.className!=='nav-active'){
       nav.className='nav-collapsed'
     }
 }

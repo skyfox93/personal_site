@@ -11,6 +11,7 @@ margin:10px;
 }
 
 .description {
+  flex-grow: 0;
   min-width:100%;
   display:flex;
   justify-content: center;
@@ -184,12 +185,14 @@ body{padding:0;
     margin:10px 10px;
   }
   .card {
+    margin-bottom:10px;
+    box-sizing: border-box;
     min-width:300px;
     border-radius: 10px;
     padding:1%;
     color:white;
     display:inline-block;
-    width:30%;
+    width:33%;
     background-color:#6F8695;
   }
 
@@ -242,13 +245,12 @@ body{padding:0;
   }
 
   .card-description{
+    text-align: center;
+    padding: 1em 0;
     border-radius: 5px;
     color:black;
     font-size:1.2em;
-    display:flex;
-    align-items: center;
-    justify-content:center;
-    height:4em;
+    display:block;
     background-color: white;
   }
   .card-menu{
@@ -266,6 +268,10 @@ body{padding:0;
   color:white;
   text-decoration:underline;
   padding:10px 2em;
+}
+.built-with{
+  text-align:center;
+  margin-top:1em;
 }
 
 .hide{
