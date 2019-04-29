@@ -4,7 +4,7 @@ let projects= [
 // title must match object key
   {
    description: "Share and edit your friend's photos",
-   title:'ImageEdit',
+   title:'Spinoff',
    url:'https://spinoff.herokuapp.com',
    videoURL:"https://player.vimeo.com/video/331844687?byline=0&portrait=0",
    imageURL: './images/spinoff.png',
