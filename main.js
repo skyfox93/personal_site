@@ -25,7 +25,7 @@ let projects= [
    url: 'https://skyfox93-plunk.glitch.me/',
    videoURL:"https://player.vimeo.com/video/332441007?portrait=0",
    imageURL: './images/plunk.png',
-   code: "https://github.com/skyfox93/plunk",
+   code: null,
    tech: 'NodeJS, Socket.io, Javascript'
  }
 ]
@@ -43,20 +43,20 @@ function projectHTML(project){
   console.log(project.videoURL);
   return `
   <div class='card'>
-
+    <div class='card-title'>${project.title}</div>
     <div class='card-image' style='background-image:url(${project.imageURL})'>
+    </div>
+    <div class='card-description'> ${project.description}</div>
+    <div class='built-with'> Built with: ${project.tech} </div>
     <div class='card-menu'>
         ${project.videoURL ? `<div
           data-url="${project.videoURL}"
-         class='menu-link video'>View Video </div>`: ''}
+         class='menu-link video'> Video </div>`: ''}
         ${project.url ? `<a href="${project.url}"
-        class='menu-link'> Launch Demo </a>` : ''}
+        class='menu-link'> Website </a>` : ''}
 
-        ${project.code ? `<a href='${project.code}' class='menu-link'> View Code </a>` :'' }
+        ${project.code ? `<a href='${project.code}' class='menu-link'> Code </a>` :'' }
     </div>
-    </div>
-    <div class='card-description'><div class='card-title'>${project.title}</div>
- ${project.description}</div>
   </div>
   `
 }
@@ -71,17 +71,6 @@ function renderProjects(projects,container){
 projectsContainer.innerHTML=(htmlString)
 projectsContainer.addEventListener('click', playVid)
 }
-
-function toggleFlex(e){
-  console.log(e.target.classList)
-  if(e.target.className.includes('card-menu')){
-    e.target.classList.toggle(flex)
-  }
-  if(e.target.querySelector('.card-menu')){
-  e.target.querySelector('.card-menu').classList.toggle("flex")
-  }
-}
-projectsContainer.addEventListener('click', toggleFlex)
 
 
 function playVid(e){
