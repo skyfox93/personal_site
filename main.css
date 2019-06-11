@@ -256,20 +256,24 @@ body{padding:0;
     background-color: white;
   }
   .card-menu{
+    box-sizing:border-box;
     margin-top:1em;
     display:flex;
     font-size:1em;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
+
   }
 
 .menu-link{
-
+  display:inline-block;
+  box-sizing:border-box;
+  background-color: rgba(0,0,0,0.5);
   font-size:1.2em;
   cursor:pointer;
   color:white;
   text-decoration:underline;
-  padding:10px 2em;
+  padding:10px 1.5em;
 }
 .built-with{
   text-align:center;

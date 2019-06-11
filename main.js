@@ -8,6 +8,7 @@ let projects= [
    url:'https://spinoff.herokuapp.com',
    videoURL:"https://player.vimeo.com/video/331844687?byline=0&portrait=0",
    imageURL: './images/spinoff.png',
+   code: "https://github.com/skyfox93/spinoff-front",
    tech: 'Ruby on Rails, React, Javascript'
  },
 
@@ -17,7 +18,7 @@ let projects= [
    url: null,
    videoURL:"https://player.vimeo.com/video/331912608?byline=0&portrait=0",
    imageURL:'./images/taskittens2.png',
-   code: null,
+   code:  "https://github.com/skyfox93/taskKittens-front",
    tech: 'Ruby on Rails, Javascript'
  },
  { title: 'Plunk!',
@@ -25,7 +26,7 @@ let projects= [
    url: 'https://skyfox93-plunk.glitch.me/',
    videoURL:"https://player.vimeo.com/video/332441007?portrait=0",
    imageURL: './images/plunk.png',
-   code: null,
+   code:"https://github.com/skyfox93/plunk",
    tech: 'NodeJS, Socket.io, Javascript'
  }
 ]
@@ -53,7 +54,7 @@ function projectHTML(project){
           data-url="${project.videoURL}"
          class='menu-link video'> Video </div>`: ''}
         ${project.url ? `<a href="${project.url}"
-        class='menu-link'> Website </a>` : ''}
+        class='menu-link'>Demo </a>` : ''}
 
         ${project.code ? `<a href='${project.code}' class='menu-link'> Code </a>` :'' }
     </div>
