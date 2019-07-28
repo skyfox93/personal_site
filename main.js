@@ -5,7 +5,7 @@ let projects= [
   {
    description: "Share and edit your friend's photos",
    title:'Spinoff',
-   url:'https://spinoff.herokuapp.com',
+   url:'http://174.138.58.32/spinoff/',
    videoURL:"https://player.vimeo.com/video/331844687?byline=0&portrait=0",
    imageURL: './images/spinoff.png',
    code: "https://github.com/skyfox93/spinoff-front",
