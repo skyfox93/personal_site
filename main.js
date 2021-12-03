@@ -57,20 +57,24 @@ let onTouchStart = (e) => mobileMode = true
 // When the user scrolls, shrink the title banner for a nice animation on desktop
 let desktopScroll = () => {
   if (
-    banner.offsetHeight > 90 &&
+    banner.offsetHeight > 60 &&
     document.body.scrollTop >= 0
   ) {
     // shrink the banner
     let diff = banner.offsetHeight - document.body.scrollTop
-    banner.style.height = diff > 90 ? diff + 'px' : '60px';
+    let newHeight = diff > 60 ? diff + 'px' : '60px'
+    banner.style.height = newHeight;
 
-    if (mobileMode) {
-      document.body.scrollTop = document.body.scrollTop - 5
-    } else {
-      document.body.scrollTop = 0;
+    
+    document.body.scrollTop = 0;
+    if (diff < 200)  {
+      desc1.style.display = 'none';
+      desc2.style.display = 'none';
+      let fontsize = 16
+      title.style.fontSize = fontsize + 'px'
     }
 
-  } else if (lastScroll > document.body.scrollTop && banner.offsetHeight < 90 && document.body.scrollTop < 50) {
+  } else if (lastScroll > document.body.scrollTop && banner.offsetHeight < 70 && document.body.scrollTop < 50) {
     // if the user is scrolling up and the banner is minimized, have it pop back up
     banner.style.height = '250px'
     let fontsize = 16
@@ -82,7 +86,7 @@ let desktopScroll = () => {
     spacer.className = 'hide';
 
 
-  } else if (document.body.scrollTop >= 0 && banner.offsetHeight < 90) {
+  } else if (document.body.scrollTop >= 0 && banner.offsetHeight <=60) {
     // if the banner is less than 90px, hide the description section because it won't fit
     if (window.innerWidth < 900) {
       title.style.display = 'none'
