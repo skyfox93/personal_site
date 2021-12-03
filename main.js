@@ -74,7 +74,7 @@ window.onscroll = function(e) {
       banner.style.height= diff > 90 ? diff+'px' : '60px';
       let fontsize=banner.offsetHeight/12
       title.style.fontSize=fontsize>12 ? fontsize+'px': '12px';
-      if (mobileMode !==True ) {
+      if (!mobileMode ) {
         document.body.scrollTop=0;
       }
     } else if (banner.offsetHeight < 350  && document.body.scrollTop == 0) {
