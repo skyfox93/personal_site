@@ -68,16 +68,15 @@ window.onscroll = function(e) {
     if(
       banner.offsetHeight> 90 &&
       (banner.className!=='title-banner-fixed')&&
-      (document.body.scrollTop>=lastScroll)
+      (document.body.scrollTop>=lastScroll) && !mobileMode
     ){
-     let diff=banner.offsetHeight-document.body.scrollTop
-      banner.style.height= diff > 90 ? diff+'px' : '60px';
-      let fontsize=banner.offsetHeight/12
-      title.style.fontSize=fontsize>12 ? fontsize+'px': '12px';
-      if (!mobileMode ) {
+        let diff=banner.offsetHeight-document.body.scrollTop
+        banner.style.height= diff > 90 ? diff+'px' : '60px';
+        let fontsize=banner.offsetHeight/12
+        title.style.fontSize=fontsize>12 ? fontsize+'px': '12px';
         document.body.scrollTop=0;
-      }
-    } else if (banner.offsetHeight < 350  && document.body.scrollTop == 0) {
+
+    } else if (banner.offsetHeight < 300  && document.body.scrollTop == 0) {
 
           banner.style.height= '250px'
           let fontsize= 16
@@ -87,9 +86,13 @@ window.onscroll = function(e) {
           desc1.style.display = 'inline-block'
           desc2.style.display='inline-block';
 
-    } else {
+    } else if (!mobileMode || (mobileMode && document.body.scrollTop > 80)){
       if(window.innerWidth < 900){
         title.style.display = 'none'
+      }
+      banner.style.height= '60px'
+      if (banner.className !== 'title-banner-fixed' && mobileMode) {
+        document.body.scrollTop = 0
       }
       banner.className='title-banner-fixed'; desc1.style.display='none';
       desc2.style.display='none';
