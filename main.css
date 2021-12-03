@@ -29,7 +29,7 @@ body {
   top:0;
   width:100%;
   z-index: 4;
-  background-image:url('./images/banner.jpg');
+  background-image:url('images/banner.jpg');
   color:white;height:400px;background-size: cover;background-position: center;
 
 }
