@@ -95,3 +95,11 @@ window.onscroll = function(e) {
       spacer.className='spacer';
     }    
 }
+
+window.onresize = function(e){
+  if(window.innerWidth < 900  && banner.offsetHeight < 90) {
+    title.style.display = 'none'
+  } else if(title.style.display !=='block'){
+    title.style.display = 'block'
+  }
+}
