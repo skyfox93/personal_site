@@ -1,41 +1,132 @@
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
-    <title></title>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <title></title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
-    <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  </head>
-  <body>
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 
-    <div class='nav'>
-      <a  class="icon">
-        <i id='hamburger' class="fa fa-bars"></i>
-      </a>
-      <a  href='https://medium.com/skylar-salernos-tech-blog' class='navlink'> Blog </a>
-      <a href='https://www.linkedin.com/in/skylar-salerno-581707180'  class='navlink'> LinkedIn </a>
-      <a href='https://github.com/skyfox93' class='navlink'> Github </a>
-      <a href='./images/salerno-resume.pdf' class='navlink'> Resume </a>
-      <div id='close-nav'>Close </div>
+<body>
+  <div class='nav'>
+    <a class="icon">
+      <i id='hamburger' class="fa fa-bars"></i>
+    </a>
+    <a href='mailto:skylar.salerno@gmail.com" class='navlink'> Contact </a>
+    <a href='https://medium.com/skylar-salernos-tech-blog' class='navlink'> Blog </a>
+    <a href='https://www.linkedin.com/in/skylar-salerno-581707180' class='navlink'> LinkedIn </a>
+    <a href='https://github.com/skyfox93' class='navlink'> Github </a>
+    <a href='./images/salerno-resume.pdf' class='navlink'> Resume </a>
+    <div id='close-nav'>Close </div>
+  </div>
+  <div class='title-banner'>
+    <div class='title-banner-main'>
+      <div class='title'>
+        <h1> Skylar Salerno</h1>
+      </div>
+      <div class='description'>
+        <h3>Software Engineer</h3>
+      </div>
+      <div class='description'>Rails | React | Flask </div>
     </div>
-    <div class='title-banner'>
-      <div class='title-banner-main'>
-        <div class='title'><h1> Skylar Salerno</h1> </div>
-        <div class='description'><h3>Web Developer</h3></div>
-        <div class='description'>Rails | React | NodeJS</div>
-
+  </div>
+  <div id='spacer' class='hide'></div>
+  <div class='skills-section-container'>
+    <div class='skills-subsection'>
+      <div class='subtitle'>
+        <h2> About Me <h2>
+      </div>
+      <div class='skills-description'>
+        I am a software engineer with more than two years professional experience. <br>
+        My skills include building integrations, implenenting new features, writing complex SQL queries, and mentoring.
+        <br> I am team player and enjoy working with others. I am seeking a new position, consider sending
+        me a message on <a href='https://www.linkedin.com/in/skylar-salerno-581707180' class='navlink'> LinkedIn </a>!
       </div>
     </div>
-    <div id='spacer'class='hide'></div>
+  </div>
+  <div id='video-container'><iframe id='video' src="" style="width:100%;height:100%;" frameborder="0"
+      allow="autoplay;"></iframe>
+  </div>
+  <div class='skills-section-container'>
+    <div class='subtitle'>
+      <h2> Technologies I have worked with<h2>
+    </div>
+    <div class='skills-subsection'>
+      React * Flask * PostgresSQL * Ruby on Rails * Google BigQuery * Shopify Apis * AWS S3 * ElasticSearch * Amazon S3
+      Storage * AWS Congnito * GraphQL * Docker * OAuth Authentication * Token-Based Authentication
+    </div>
+  </div>
 
-      <div id='video-container'><iframe id='video' src="" style="width:100%;height:100%;" frameborder="0" allow="autoplay;" ></iframe>
+  <div class='skills-section-container'>
+    <div class='subtitle'>
+      <h2>Skill Highlights<h2>
+    </div>
+    <div id='opacity-filter-wrapper'>
+      <div class='skills-subsection'>
+        <h3 class='skills-title'>Api Integration</h3>
+        <div id='api-integration-example-image'></div>
+        <div class='skills-description'>
+          I frequently work with third party apis to import or sync data between systems. For example, at Apteo, I was
+          responsible for our data Shopify data ingestion flow, including user authorization, querying the system
+          using GraphQL, and downloading and parsing the resulting files.
+        </div>
       </div>
-      <div class='subtitle'><h2>Projects<h2></div>
-      <div id='projects-container'> </div>
-    <script src='main.js'></script>
-    <script src="https://player.vimeo.com/api/player.js"></script>
-  </body>
+      <div class='skills-subsection'>
+        <h3 class='skills-title'> Sql and Bigquery</h3>
+        <div class='skills-description'>
+          I often write SQL queries that involve grouping and aggregation, various types of joins, or subqueries
+          For example, one of the features I implemented end to our end displayed aggregated statistics about each
+          customer such as the average value of their orders, which products they had purchased, ect, and allowed the
+          user to search for customers based on any combination of these values.
+          As another examples, I implemented a daily job to send out product recommendations to customers based on
+          which product was most recommended, whether they had been emailed within a user-configurable threshold, and
+          whether
+          total number of emails to that user within a campaign had exceeded the user configured maximum.
+        </div>
+      </div>
+      <div class='skills-subsection'>
+        <h3 class='skills-title'> Feature Ownership</h3>
+        <div class='skills-description'>
+
+          <ul>
+            When I am building a feature, I ask myself the following questions:
+            <br>
+            <li> Is the code structured in a way that is transparent and readable for the rest of the team?</li>
+            <li> Am I returning the data in a structure and format which is easily consumable and consistent with
+              the way our api normally returns data? </li>
+            <li> Are we fetching data efficiently? Are we fetching only the data we need, without unnecessary
+              complexity? </li>
+            <li> Are we handling edge cases correctly and surfacing errors correctly? </li>
+            <li>Are there UX hiccups that are not mentioned in the product requirements? For example, are we
+              missing a spinner or visual feedback while the page is fetching data? What happens when the user
+              resizes the browser window? Small details like this may not be part of the written requirements.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='skills-section-container'>
+    <div class='subtitle'>
+      <h2>Projects<h2>
+    </div>
+    <div id='opacity-filter-wrapper'>
+      <div class='skills-subsection'>
+        <div id='api-integration-example-image'></div>
+        <div class='skills-description'>
+            This section is under development and will be available Saturday 9/4/2021
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+<script src='main.js'></script>
+<script src="https://player.vimeo.com/api/player.js"></script>
+</body>

@@ -1,4 +1,5 @@
 
+
 let projects= [
 //Title, description, url, VideoURL
 // title must match object key
@@ -31,67 +32,8 @@ let projects= [
  }
 ]
 
-const projectsContainer=document.querySelector('#projects-container')
-const videoContainer=document.querySelector('#video-container');
-const videoEl=document.querySelector('#video');
-let vidPlay=false;
-renderProjects(projects,projectsContainer)
-
 
 /// helpers///////
-
-function projectHTML(project){
-  console.log(project.videoURL);
-  return `
-  <div class='card'>
-    <div class='card-title'>${project.title}</div>
-    <div class='card-image' style='background-image:url(${project.imageURL})'>
-    </div>
-    <div class='card-description'> ${project.description}</div>
-    <div class='built-with'> Built with: ${project.tech} </div>
-    <div class='card-menu'>
-        ${project.videoURL ? `<div
-          data-url="${project.videoURL}"
-         class='menu-link video'> Video </div>`: ''}
-        ${project.url ? `<a href="${project.url}"
-        class='menu-link'>Demo </a>` : ''}
-
-        ${project.code ? `<a href='${project.code}' class='menu-link'> Code </a>` :'' }
-    </div>
-  </div>
-  `
-}
-
-function projectReducer(htmlString, project){
-  console.log(projectHTML(project))
-    return htmlString+projectHTML(project)
-
-}
-function renderProjects(projects,container){
-  let htmlString=projects.reduce(projectReducer,'')
-projectsContainer.innerHTML=(htmlString)
-projectsContainer.addEventListener('click', playVid)
-}
-
-
-function playVid(e){
-  console.log(e.target)
-    if(e.target.className==='menu-link video')
-    {
-    title.style.fontSize='12px';
-    console.log(banner);
-    banner.className='title-banner-fixed';
-    //projectsContainer.style.display='none'
-    videoEl.src=e.target.dataset.url
-    videoContainer.style.display='block'
-    videoEl.style.display='block'
-    vidPlay=true;
-    nav.className='nav-collapsed'
-    spacer.className='spacer';
-    document.body.scrollTop=0;
-    banner.style.height='';
-  }
-}
 
 function stopPropagation(e){
   e.stopPropagation()
@@ -120,27 +62,36 @@ function toggleResponsive(e){
 }
 
 window.onscroll = function(e) {
+  console.log(document.body.scrollTop)
+
     if(
-      banner.offsetHeight>60 &&
+      banner.offsetHeight> 90 &&
       (banner.className!=='title-banner-fixed')&&
       (document.body.scrollTop>=lastScroll)
       )
     {
-      console.log('height adjusted')
      let diff=banner.offsetHeight-document.body.scrollTop
-      if(diff<60){diff=60}
-      banner.style.height=diff+'px';
-      console.log('diff',diff)
-      let fontsize=banner.offsetHeight/10
+      banner.style.height= diff > 90 ? diff+'px' : '60px';
+      let fontsize=banner.offsetHeight/12
       title.style.fontSize=fontsize>12 ? fontsize+'px': '12px';
       document.body.scrollTop=0;
-    }
-      else if(document.body.scrollTop>=lastScroll) {
-        banner.className='title-banner-fixed';banner.style.height=''; desc1.style.display='none';
-        desc2.style.display='none';
+    } else if (banner.offsetHeight < 350  && document.body.scrollTop == 0) {
+          console.log(document.body.scrollTop)
+
+          banner.style.height= '250px'
+          let fontsize= 16
+          title.style.fontSize=fontsize+'px'
+          title.style.display = 'inline-block'
+          banner.className='title-banner'
+          desc1.style.display = 'inline-block'
+          desc2.style.display='inline-block';
+
+    } else {
+      if(window.innerWidth < 900){
+        title.style.display = 'none'
+      }
+      banner.className='title-banner-fixed'; desc1.style.display='none';
+      desc2.style.display='none';
       spacer.className='spacer';
-    }
-    if(banner.offsetHeight<200&&banner.className!=='title-banner-fixed' && nav.className!=='nav-active'){
-      nav.className='nav-collapsed'
-    }
+    }    
 }
