@@ -52,7 +52,7 @@ let closeNav=document.querySelector('#close-nav')
 closeNav.addEventListener('click',toggleResponsive)
 
 let lastScroll=0;
-
+let mobileMode = false
 function toggleResponsive(e){
   e.preventDefault()
   console.log('responsive!')
@@ -61,22 +61,23 @@ function toggleResponsive(e){
   )
 }
 
+window.addEventListener('touchmove', function (event) {
+    mobileMode = true
+})
 window.onscroll = function(e) {
-  console.log(document.body.scrollTop)
-
     if(
       banner.offsetHeight> 90 &&
       (banner.className!=='title-banner-fixed')&&
       (document.body.scrollTop>=lastScroll)
-      )
-    {
+    ){
      let diff=banner.offsetHeight-document.body.scrollTop
       banner.style.height= diff > 90 ? diff+'px' : '60px';
       let fontsize=banner.offsetHeight/12
       title.style.fontSize=fontsize>12 ? fontsize+'px': '12px';
-      document.body.scrollTop=0;
+      if (mobileMode !==True ) {
+        document.body.scrollTop=0;
+      }
     } else if (banner.offsetHeight < 350  && document.body.scrollTop == 0) {
-          console.log(document.body.scrollTop)
 
           banner.style.height= '250px'
           let fontsize= 16
