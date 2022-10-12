@@ -119,21 +119,18 @@ function toggleResponsive(e){
   )
 }
 
+const bannerContent = document.querySelector('.title-banner-main')
 window.onscroll = function(e) {
     if(
-      banner.offsetHeight>60 &&
       (banner.className!=='title-banner-fixed')&&
       (document.body.scrollTop>=lastScroll)
       )
     {
-      console.log('height adjusted')
-     let diff=banner.offsetHeight-document.body.scrollTop
-      if(diff<60){diff=60}
-      banner.style.height=diff+'px';
-      console.log('diff',diff)
-      let fontsize=banner.offsetHeight/10
+      let fontsize=32 - document.body.scrollTop/10 
+      console.log(fontsize)
+      let opacity = 1 - document.body.scrollTop /300
+      bannerContent.style.opacity = opacity
       title.style.fontSize=fontsize>12 ? fontsize+'px': '12px';
-      document.body.scrollTop=0;
     }
       else if(document.body.scrollTop>=lastScroll) {
         banner.className='title-banner-fixed';banner.style.height=''; desc1.style.display='none';

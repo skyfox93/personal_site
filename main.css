@@ -20,7 +20,7 @@ margin:10px;
 
 body{padding:0;
   margin:0;
-  background-color: lightGrey;
+  background-color: darkslategray;
   font-family: 'Open Sans', sans-serif;
 
 
@@ -33,6 +33,7 @@ body{padding:0;
   color:white;height:400px;background-size: cover;background-position: center;
 
 }
+
 
 #close-nav{
   display:none;
@@ -139,16 +140,21 @@ body{padding:0;
 .title-banner-main{
   height:100%;
    display:flex;
-   flex-direction:column;
    flex-wrap:wrap;
    justify-content: center;
    align-items: center;
    text-align:center;
 }
 
+.title-banner-main img {
+  display: inline-block;
+}
+
+
+
+
 
 .title{
-  min-width:100%;
   font-size:2em;
 
 }
@@ -190,7 +196,7 @@ body{padding:0;
     margin-bottom:10px;
     box-sizing: border-box;
     min-width:300px;
-    border-radius: 5px;
+    border-radius: 2px;
     padding:1%;
     color:white;
     display:inline-block;
@@ -282,4 +288,8 @@ body{padding:0;
 
 .hide{
   display:none;
+}
+
+.side-image {
+  height: 12rem;
 }
