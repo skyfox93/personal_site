@@ -8,25 +8,25 @@ h1 {
   --medium_slate: #6F8695;
 }
 
-.interest{
-  color:white;
+.interest {
+  color: white;
   font-weight: bold;
 }
 
 .tech {
-  display:inline-block;
+  display: inline-block;
   margin-top: 1em;
   line-height: 2em;
-  color:#ffffffc1;
-  background-color: rgb(0,0,0,0.1);
+  color: #ffffffc1;
+  background-color: rgb(0, 0, 0, 0.1);
   padding: 1em;
 }
 
-.card .tech-keyword{
+.card .tech-keyword {
   white-space: nowrap;
   border-radius: 3px;
   padding: 3px;
-  margin: 3px; 
+  margin: 3px;
   background-color: var(--trans_black);
 }
 
@@ -82,7 +82,7 @@ body {
   top: 0;
 }
 
-.block-section{
+.block-section {
   background-color: rgb(1 21 40);
   border-radius: 3px;
   margin: auto;
@@ -102,7 +102,7 @@ body {
 }
 
 .block-section p {
-  color:#ffffffc1;
+  color: #ffffffc1;
 }
 
 .nav a:first-child {
@@ -136,14 +136,14 @@ body {
   width: 100%;
 }
 
-.card-video{
+.card-video {
   height: 300px;
   width: 100%;
 }
 
 #video-close {
-  width:1em;
-  position:absolute;
+  width: 1em;
+  position: absolute;
   right: 3em;
   border-radius: 5px;
   border: 5px solid black;
@@ -156,56 +156,63 @@ body {
   height: 60px;
 }
 
+.nav {
+  z-index: 2;
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  padding: 1em;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+}
 
-  .nav {
-    z-index: 2;
-    position: absolute;
-    top: 10px;
-    width: 100%;
-    padding: 1em;
-    box-sizing: border-box;
-    display:flex;
-    justify-content: space-between;
-  }
+.nav a {
+  text-decoration: none;
+}
 
-  #hamburger {
-    display: none;
-  }
+.nav a:hover {
+  text-decoration: underline;
+}
 
-  .nav a,
-  .nav-collapsed a {
-    color: white;
-    display: inline-block;
-    margin: 10px 10px;
-  }
+#hamburger {
+  display: none;
+}
 
- .projects-container {
-   min-height: 200px;
-   width:100%;
-   display:flex;
-   justify-content: center;
- }
+.nav a,
+.nav-collapsed a {
+  color: white;
+  display: inline-block;
+  margin: 10px 10px;
+}
 
-  .card {
-    background-color: var(--medium_slate);
-    padding: 1%;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-    width: 40%;
-    border-radius: 2px;
-    padding: 0.25em;
-    color: white;
-    display: inline-block;
-    margin: 2rem;
-  }
+.projects-container {
+  min-height: 200px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 
-  .card-image {
-    min-width: 300px;
-    height: 20%;
-    overflow: hidden;
-    background-size: cover;
-    background-position: center;
-  }
+.card {
+  background-color: var(--medium_slate);
+  padding: 1%;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  width: 40%;
+  border-radius: 2px;
+  padding: 0.25em;
+  color: white;
+  display: inline-block;
+  margin: 2rem;
+}
+
+.card-image {
+  min-width: 300px;
+  height: 20%;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
 
 @media (max-width:950px) {
   .card {
@@ -267,11 +274,18 @@ body {
   display: inline-block;
   box-sizing: border-box;
   background-color: rgba(0, 0, 0, 0.5);
-  font-size: 1.2em;
   cursor: pointer;
-  color: white;
-  text-decoration: underline;
+  color: #ffffffc1;
   padding: 10px 1.5em;
+
+}
+
+a.menu-link {
+  text-decoration: none;
+}
+
+.menu-link:hover {
+  text-decoration: underline;
 }
 
 .built-with {
