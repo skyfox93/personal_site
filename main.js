@@ -12,15 +12,15 @@ let projects= [
    tech: 'Ruby on Rails, React, Javascript'
  },
 
- {
-   description:'Complete a list, collect a kitten' ,
-   title:'TaskKittens',
-   url: null,
-   videoURL:"https://player.vimeo.com/video/331912608?byline=0&portrait=0",
-   imageURL:'./images/taskittens2.png',
-   code:  "https://github.com/skyfox93/taskKittens-front",
-   tech: 'Ruby on Rails, Javascript'
- },
+//  {
+//    description:'Complete a list, collect a kitten' ,
+//    title:'TaskKittens',
+//    url: null,
+//    videoURL:"https://player.vimeo.com/video/331912608?byline=0&portrait=0",
+//    imageURL:'./images/taskittens2.png',
+//    code:  "https://github.com/skyfox93/taskKittens-front",
+//    tech: 'Ruby on Rails, Javascript'
+//  },
  { title: 'Plunk!',
    description: 'Jam with other people in real-time',
    url: 'https://skyfox93-plunk.glitch.me/',
@@ -78,24 +78,14 @@ function playVid(e){
   console.log(e.target)
     if(e.target.className==='menu-link video')
     {
-    title.style.fontSize='12px';
-    console.log(banner);
-    banner.className='title-banner-fixed';
-    //projectsContainer.style.display='none'
     videoEl.src=e.target.dataset.url
     videoContainer.style.display='block'
     videoEl.style.display='block'
     vidPlay=true;
-    nav.className='nav-collapsed'
-    spacer.className='spacer';
-    document.body.scrollTop=0;
-    banner.style.height='';
+    videoEl.scrollIntoView();
   }
 }
 
-function stopPropagation(e){
-  e.stopPropagation()
-}
 let banner=document.querySelector('.title-banner');
 let spacer=document.querySelector('#spacer')
 console.log(banner);
@@ -119,28 +109,26 @@ function toggleResponsive(e){
   )
 }
 
-window.onscroll = function(e) {
-    if(
-      banner.offsetHeight>60 &&
-      (banner.className!=='title-banner-fixed')&&
-      (document.body.scrollTop>=lastScroll)
-      )
-    {
-      console.log('height adjusted')
-     let diff=banner.offsetHeight-document.body.scrollTop
-      if(diff<60){diff=60}
-      banner.style.height=diff+'px';
-      console.log('diff',diff)
-      let fontsize=banner.offsetHeight/10
-      title.style.fontSize=fontsize>12 ? fontsize+'px': '12px';
-      document.body.scrollTop=0;
-    }
-      else if(document.body.scrollTop>=lastScroll) {
-        banner.className='title-banner-fixed';banner.style.height=''; desc1.style.display='none';
-        desc2.style.display='none';
-      spacer.className='spacer';
-    }
-    if(banner.offsetHeight<200&&banner.className!=='title-banner-fixed' && nav.className!=='nav-active'){
-      nav.className='nav-collapsed'
-    }
+document.querySelector('#video-close').addEventListener(
+  'click', (e) => {videoContainer.style.display = "none"}
+)
+
+
+const bannerContent = document.querySelector('.title-banner-main')
+
+
+const handleTextResize = (e) => {
+
+  let fontsize=32 - document.body.scrollTop/10 
+  console.log(fontsize)
+  let opacity = 1 - document.body.scrollTop /200
+  bannerContent.style.opacity = opacity
+  if (fontsize < 12) {
+    fontsize = 12
+  }
+  if (fontsize > 32) {
+    fontsize = 32
+  }
+  title.style.fontSize = fontsize+'px'
 }
+document.addEventListener('scroll',handleTextResize)
