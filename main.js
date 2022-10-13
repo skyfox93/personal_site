@@ -12,15 +12,15 @@ let projects= [
    tech: 'Ruby on Rails, React, Javascript'
  },
 
- {
-   description:'Complete a list, collect a kitten' ,
-   title:'TaskKittens',
-   url: null,
-   videoURL:"https://player.vimeo.com/video/331912608?byline=0&portrait=0",
-   imageURL:'./images/taskittens2.png',
-   code:  "https://github.com/skyfox93/taskKittens-front",
-   tech: 'Ruby on Rails, Javascript'
- },
+//  {
+//    description:'Complete a list, collect a kitten' ,
+//    title:'TaskKittens',
+//    url: null,
+//    videoURL:"https://player.vimeo.com/video/331912608?byline=0&portrait=0",
+//    imageURL:'./images/taskittens2.png',
+//    code:  "https://github.com/skyfox93/taskKittens-front",
+//    tech: 'Ruby on Rails, Javascript'
+//  },
  { title: 'Plunk!',
    description: 'Jam with other people in real-time',
    url: 'https://skyfox93-plunk.glitch.me/',
