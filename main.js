@@ -78,24 +78,14 @@ function playVid(e){
   console.log(e.target)
     if(e.target.className==='menu-link video')
     {
-    title.style.fontSize='12px';
-    console.log(banner);
-    banner.className='title-banner-fixed';
-    //projectsContainer.style.display='none'
     videoEl.src=e.target.dataset.url
     videoContainer.style.display='block'
     videoEl.style.display='block'
     vidPlay=true;
-    nav.className='nav-collapsed'
-    spacer.className='spacer';
-    document.body.scrollTop=0;
-    banner.style.height='';
+    videoEl.scrollIntoView();
   }
 }
 
-function stopPropagation(e){
-  e.stopPropagation()
-}
 let banner=document.querySelector('.title-banner');
 let spacer=document.querySelector('#spacer')
 console.log(banner);
@@ -119,25 +109,26 @@ function toggleResponsive(e){
   )
 }
 
+document.querySelector('#video-close').addEventListener(
+  'click', (e) => {videoContainer.style.display = "none"}
+)
+
+
 const bannerContent = document.querySelector('.title-banner-main')
-window.onscroll = function(e) {
-    if(
-      (banner.className!=='title-banner-fixed')&&
-      (document.body.scrollTop>=lastScroll)
-      )
-    {
-      let fontsize=32 - document.body.scrollTop/10 
-      console.log(fontsize)
-      let opacity = 1 - document.body.scrollTop /300
-      bannerContent.style.opacity = opacity
-      title.style.fontSize=fontsize>12 ? fontsize+'px': '12px';
-    }
-      else if(document.body.scrollTop>=lastScroll) {
-        banner.className='title-banner-fixed';banner.style.height=''; desc1.style.display='none';
-        desc2.style.display='none';
-      spacer.className='spacer';
-    }
-    if(banner.offsetHeight<200&&banner.className!=='title-banner-fixed' && nav.className!=='nav-active'){
-      nav.className='nav-collapsed'
-    }
+
+
+const handleTextResize = (e) => {
+ 
+  let fontsize=32 - document.body.scrollTop/10 
+  console.log(fontsize)
+  let opacity = 1 - document.body.scrollTop /300
+  bannerContent.style.opacity = opacity
+  if (fontsize > 12) {
+    fontsize = 12
+  }
+  if (fontsize > 32) {
+    fontsize = 32
+  }
+  title.style.fontSize = fontsize+'px'
 }
+document.body.addEventListener('scroll', handleTextResize)

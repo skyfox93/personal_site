@@ -2,7 +2,9 @@
 
 <head>
 	<meta charset="utf-8">
-	g <title> Skylar Salerno</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<title> Skylar Salerno</title>
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	<link rel="stylesheet" href="main.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -19,88 +21,96 @@
 		<a href='./images/salerno-resume.pdf' class='navlink'> Resume </a>
 		<div id='close-nav'>Close </div>
 	</div>
-	<div class='title-banner'>
-		<div class='title-banner-main'>
+	<div class='title-banner flex-centered'>
+		<div class='title-banner-main flex-centered'>
 			<img src="./images/clipped-headshot.png" class="side-image">
 			<div>
 				<div class='title'>
 					<h1> Skylar Salerno</h1>
 				</div>
-				<div class='description'>
+				<div class='description flex-centered'>
 					<h3>I develop software to make the world more connected</h3>
 				</div>
 			</div>
-			<div class='technology-container'>
+			<div>
 			</div>
 		</div>
 	</div>
-	<div id="about">
-		Born and raised in Brooklyn, my interests other than software include playing music (&#127930;
-		trumpet), social pyschology, science fiction, and building community. A few years ago, I discovered in coding a
-		way
-		to combine my love for theory, creativity, and teamwork.
+	<div id="about" class="block-section section">
+		<h3> About Me</h3>
+		<p>
+			Born and raised in Brooklyn, my interests include <span class="interest"> Coding </span><span class='interest'> playing
+				trumpet &#127930;</span> , <span class='interest'> social pyschology </span>, <span class='interest'> science
+				fiction </span>, and <span class='interest'> building community </span>.
+			A few years ago, I discovered in coding a
+			way to combine my love for <span class="interest">theory</span>, <span class="interest">creativity</span>,
+			and <span class="interest">teamwork.</span>
+		</p>
+	
 	</div>
-	<div id="#professional">
-		<h5> Proffesional Work</h5>
-		<div classname='card container'>
-			<div classname='card apteo'>
-				<img classname="card-image">
-				<div classname="card-body">
-					<div classname='card-header'>
-						Apteo
-					</div>
-					<p classname='card-subtitle small'>
+	<div id="#professional" class="section">
+		<h3> Proffesional Work</h3>
+		<div class='card-container'>
+			<div class='card full-width'>
+				<h4 class='card-header'>
+					Apteo
+				</h4>
+				<iframe class="card-video"" src="https://player.vimeo.com/video/759727498?" frameborder="0" allow="autoplay;fullscreen" allowfullscreen></iframe>
+				<div class="card-body">
+					<p class='card-subtitle small'>
 						2019 - 2021
 					</p>
-					<p className='card-body-text'>
+					<p class='card-body-text'>
 						At Apteo I built a number of features end to end,
 						including importing data from Shopify, writing analytics queries, and displaying statistics for
 						each
 						customer.
 					</p>
-					<div classname="tech subtitle">
-						<span classname="techstack">
-							Tech Stack:
+					<div class="tech">
+						<span class="techstack">
+							Tech:
 						</span>
-						<span classname="tech-keyword">
+						<span class="tech-keyword">
 							Python (Flask)
 						</span>
-						<span classname="tech-keyword">
+						<span class="tech-keyword">
 							Postgres
 						</span>
-						<span classname="tech-keyword">
-							GoogleBiguery
+						<span class="tech-keyword">
+							Google BigQuery
 						</span>
 					</div>
 				</div>
-				<div classname='card apteo'>
-					<img classname="card-image">
-					<div classname="card-body">
-						<div classname='card-header'>
-							Dalia
-						</div>
-						<p classname='card-subtitle small'>
-							June 2018 - Dec 2019
-						</p>
-					</div>
-					<p className='card-body-text'>
-						At Dalia, I worked closely with the CEO to scale our job search engine, fix indexing issues, reduce memory issues and improve search functionality.
-						.
+			</div>
+			<div class='card full-width'>
+				<h4 class='card-header'>
+					Dalia
+				</h4>
+				<img class = 'card-video' src="./images/maia-screenshot.png">
+				<div class="card-body">
+				
+					<p class='card-subtitle small'>
+						June 2018 - Dec 2019
 					</p>
-					<div classname="tech subtitle">
-						<span classname="techstack">
-							Tech Stack:
-						</span>
-						<span classname="tech-keyword">
-							Ruby On Rails
-						</span>
-						<span classname="tech-keyword">
-							Postgres
-						</span>
-						<span classname="tech-keyword">
-							ElasticSearch
-						</span>
-					</div>
+				</div>
+				<p class='card-body-text'>
+					At Dalia, I worked closely with the CEO to scale our job search engine, fix indexing issues, reduce
+					memory issues and improve search functionality.
+					.
+				</p>
+				<div class="tech subtitle">
+					<span class="techstack">
+						Tech Stack:
+					</span>
+					<span class="tech-keyword">
+						Ruby On Rails
+					</span>
+					<span class="tech-keyword">
+						Postgres
+					</span>
+					<span class="tech-keyword">
+						ElasticSearch
+					</span>
 				</div>
 			</div>
 		</div>
@@ -108,15 +118,14 @@
 
 	<div id='spacer' class='hide'></div>
 	<div id='video-container'>
+		<img id="video-close" src="./images/close.png">
 		<iframe id='video' src="" style="width:100%;height:100%;" frameborder="0" allow="autoplay;"></iframe>
 	</div>
-	<div id="projects">
-
+	<div id="projects" class="section">
+		<h2>Projects</div>
+		<div id='projects-container'> </div>
 	</div>
-	<div class='subtitle'>
-		<h2>Projects<h2>
-	</div>
-	<div id='projects-container'> </div>
+	
 	<script src='main.js'></script>
 	<script src="https://player.vimeo.com/api/player.js"></script>
 </body>
