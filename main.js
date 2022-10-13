@@ -118,12 +118,12 @@ const bannerContent = document.querySelector('.title-banner-main')
 
 
 const handleTextResize = (e) => {
- 
+
   let fontsize=32 - document.body.scrollTop/10 
   console.log(fontsize)
-  let opacity = 1 - document.body.scrollTop /300
+  let opacity = 1 - document.body.scrollTop /200
   bannerContent.style.opacity = opacity
-  if (fontsize > 12) {
+  if (fontsize < 12) {
     fontsize = 12
   }
   if (fontsize > 32) {
@@ -131,4 +131,4 @@ const handleTextResize = (e) => {
   }
   title.style.fontSize = fontsize+'px'
 }
-document.body.addEventListener('scroll', handleTextResize)
+document.addEventListener('scroll',handleTextResize)
