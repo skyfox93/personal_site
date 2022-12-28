@@ -6,7 +6,7 @@ let projects = [
     {
       description: "Share and edit your friend's photos",
       title: 'Spinoff',
-      url: 'http://174.138.58.32/spinoff/',
+     // url: 'http://174.138.58.32/spinoff/',
       videoURL: "https://player.vimeo.com/video/331844687?byline=0&portrait=0",
       imageURL: './images/spinoff.png',
       code: "https://github.com/skyfox93/spinoff-front",
@@ -51,7 +51,7 @@ let projects = [
                 `<div data-url="${this.data.videoURL}" class='menu-link video'> Video </div>`
                 : ''}
                 ${this.data.url ?
-                `<a href="${this.data.url}" class='menu-link'>Demo </a>`
+                `<a href="${this.data.url}" class='menu-link'>Live Demo </a>`
                 : ''}
                 ${this.data.code ?
                 `<a href='${this.data.code}' class='menu-link'> Repo </a>` :
