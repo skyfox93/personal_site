@@ -62,8 +62,8 @@ body {
   width: 100%;
   background-image: url('./images/banner.jpg');
   color: white;
-
-  min-height: 400px;
+  display: flex;
+  min-height: 600px;
   background-size: cover;
   background-position: center;
 }
@@ -150,11 +150,13 @@ body {
   padding: 1em;
   box-sizing: border-box;
   display: flex;
-  justify-content: space-between;
+  position: absolute;
 }
 
 .nav a {
   text-decoration: none;
+  padding: 5px;
+  border: solid 1px white;
 }
 
 .nav a:hover {

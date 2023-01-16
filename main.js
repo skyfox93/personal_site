@@ -20,13 +20,3 @@ let vidPlay = false;
 document.querySelector('#video-close').addEventListener(
   'click', (e) => { videoContainer.style.display = "none" }
 )
-
-//* Opacity Scroll Effect */
-const bannerContent = document.querySelector('.title-banner-main')
-const handleOpacityEffect = (e) => {
-
-  let opacity = 1 - document.body.scrollTop / 200
-  bannerContent.style.opacity = opacity
-}
-
-document.addEventListener('scroll', handleOpacityEffect)
