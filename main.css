@@ -95,6 +95,7 @@ body {
 .card-container {
   margin: auto;
   display: flex;
+  width: 100%;
   justify-content: center;
   flex-wrap: wrap;
 }
@@ -188,17 +189,24 @@ body {
   
 }
 
+#projects {
+  position: relative;
+  padding: 1em 0 ;
+  background-color: var(--trans_black);
+
+
+}
+
 #projects-container {
   min-height: 200px;
   position: relative;
-
-  background-color: var(--trans_black);
   padding: 5em 0;
   box-sizing: border-box;
   width: 100%;
+  padding: 1em;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
 .card {
@@ -217,8 +225,9 @@ body {
 .project-card{
   width:400px;
   z-index: 5;
+  margin: 2em 0;
+  padding: 1em;
   display: inline-block;
-  margin: 1em 2em 1em 0;
   background-color: #0A2542;
 }
 
@@ -341,6 +350,11 @@ a.menu-link {
   .card img {
     min-width: 300px;
     width: 100%;
+  }
+
+  .project-card {
+    width: 100%;
+    box-sizing: border-box;
   }
 
   

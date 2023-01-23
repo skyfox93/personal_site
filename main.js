@@ -1,6 +1,6 @@
 import './Projects.js'
 
-particlesJS.load("projects-container", "./particles.json", function () {
+particlesJS.load("projects", "./particles.json", function () {
   console.log("callback - particles.js config loaded");
 });
 
