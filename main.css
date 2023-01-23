@@ -32,8 +32,9 @@ h1 {
   background-color: var(--trans_black);
   white-space: nowrap;
   border-radius: 3px;
-  padding: 0.5em;
+  padding: 0.25em;
   margin: 3px;
+  margin-top:1em;
 }
 
 .menu-link {
@@ -184,10 +185,16 @@ body {
   color: white;
   display: inline-block;
   margin: 10px 10px;
+  
 }
 
 #projects-container {
   min-height: 200px;
+  position: relative;
+
+  background-color: var(--trans_black);
+  padding: 5em 0;
+  box-sizing: border-box;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -198,7 +205,6 @@ body {
   padding: 1%;
   margin-bottom: 10px;
   box-sizing: border-box;
-  border-radius: 5px;
   padding: 0.5em;
   justify-content: center;
   color: white;
@@ -210,6 +216,7 @@ body {
 
 .project-card{
   width:400px;
+  z-index: 5;
   display: inline-block;
   margin: 1em 2em 1em 0;
   background-color: #0A2542;
@@ -342,5 +349,14 @@ a.menu-link {
 .icon {
   width: 1em;
 }
+
+.particles-js-canvas-el{
+  position: absolute;
+  top:0;
+  left:0;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+  }
 
 

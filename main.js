@@ -1,5 +1,9 @@
 import './Projects.js'
 
+particlesJS.load("projects-container", "./particles.json", function () {
+  console.log("callback - particles.js config loaded");
+});
+
 const projectsContainer = document.querySelector('#projects-container')
 projectsContainer.addEventListener('click', playVid)
 
