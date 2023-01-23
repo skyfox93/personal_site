@@ -1,5 +1,3 @@
-/* TODO: Reorganize Code To Match Best Practice*/ 
-
 
 let projects = [
     //Title, description, url, VideoURL
@@ -33,28 +31,29 @@ let projects = [
     getHtml() {
         return (
             `
-            <div class='card'>
+            <div class='project-card'>
                 <div class='card-title'>
-                ${this.data.title}
+                  ${this.data.title}
                 </div>
                 <div class='card-image' style='background-image:url(${this.data.imageURL})'>
                 </div>
                 <div class='card-description'>
-                ${this.data.description}
+                  ${this.data.description}
                 </div>
                 <div class='built-with'> Built with: ${this.data.tech.map(
-                (t) => (`<span class="tech-keyword">${t}</span>`)
-            ).join('')}
+                  (t) => (`<span class="tech-keyword">${t}</span>`)
+                  ).join('')}
                 </div>
                 <div class='card-menu'>
-                ${this.data.videoURL ?
-                `<div data-url="${this.data.videoURL}" class='menu-link video'> Video </div>`
-                : ''}
+                  ${  this.data.videoURL ?
+                    `<div data-url="${this.data.videoURL}" class='menu-link video'> <img src='./images/movie-icon2.svg' class='icon'> </div>`
+                  : ''
+                  }
                 ${this.data.url ?
-                `<a href="${this.data.url}" class='menu-link'>Live Demo </a>`
+                `<a href="${this.data.url}" class='menu-link'> <img src='./images/open-demo.svg' class='icon'> </a>`
                 : ''}
                 ${this.data.code ?
-                `<a href='${this.data.code}' class='menu-link'> Repo </a>` :
+                `<a href='${this.data.code}' class='menu-link'> <img src='./images/github-mark-white.png' class='icon'> </a>` :
                 ''}
                 </div>
             </div>
@@ -71,7 +70,6 @@ let projects = [
   }
   
   const projectsContainer = document.querySelector('#projects-container')
-  console.log(projectsContainer)
   renderProjects(initalizedProjects,projectsContainer)
   
   
