@@ -1,5 +1,5 @@
-h1 {
-  margin: 10px;
+* {
+  box-sizing: border-box;
 }
 
 /* VARIABLES */
@@ -9,6 +9,12 @@ h1 {
   --trans_white: rgba(255,255,255, 0.5);
 
 }
+
+.offset-wave{
+  position: absolute;
+  top: -200px;
+  left: 0;
+} 
 
 .interest {
   color: white;
@@ -191,8 +197,12 @@ body {
 
 #projects {
   position: relative;
-  padding: 1em 0 ;
-  background-color: var(--trans_black);
+  background-color: #0d121d;
+  padding: 1em;
+  margin-top:100px;
+  box-sizing: border-box;
+
+
 
 
 }
