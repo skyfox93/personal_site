@@ -4,7 +4,7 @@ let projects = [
     {
       description: "Share and edit your friend's photos",
       title: 'Spinoff',
-     // url: 'http://174.138.58.32/spinoff/',
+      url: 'https://skyfox93.github.io/newimagedit',
       videoURL: "https://player.vimeo.com/video/331844687?byline=0&portrait=0",
       imageURL: './images/spinoff.png',
       code: "https://github.com/skyfox93/spinoff-front",
