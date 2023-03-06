@@ -15,7 +15,7 @@
 }
 
 .swiper-slide {
-  padding: 10px 45px;
+  padding: 10px 50px;
   background-color: #0A2542;
 
 }
@@ -23,7 +23,19 @@
 .swiper {
   max-width: 700px;
   width:90%;
-  height: 200px;
+  height: 300px;
+}
+
+#blog-section .description{
+  display: inline-block;
+  overflow: hidden;
+}
+
+#blog-section .blog-item {
+   display: flex;
+   flex-direction: column;
+   padding-bottom: 2em;
+   height:100%;
 }
 
 .interest {
@@ -289,7 +301,6 @@ body {
 }
 
 .card-image {
-  min-width: 300px;
   height: 150px;
   overflow: hidden;
   background-size: cover;

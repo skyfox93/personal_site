@@ -38,9 +38,9 @@ parser.parseURL("https://corsanywhere.herokuapp.com/medium.com/feed/skylar-saler
   let div = document.createElement('div')
   div.className='swiper-slide blog-preview'
   div.innerHTML = `
-  <a href="${item.link}"><h3> ${item.title}</h3> 
+  <a href="${item.link}" class="blog-item"><h3> ${item.title}</h3> 
       <div class="description">
-          ${item["content:encodedSnippet"].slice(0, 150)}...
+          ${item["content:encodedSnippet"]}...
       </div>
       </a> 
     `
