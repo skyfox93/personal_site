@@ -26,7 +26,7 @@ document.querySelector('#video-close').addEventListener(
   'click', (e) => { videoContainer.style.display = "none" }
 )
 let parser = new RSSParser();
-parser.parseURL("https://corsanywhere.herokuapp.com/medium.com/feed/skylar-salernos-tech-blog", function(err, feed) {
+parser.parseURL("https://proxy.cors.sh/https://medium.com/feed/skylar-salernos-tech-blog", function(err, feed) {
   if (err) throw err;
   console.log(feed.items);
   const blogsContainer = document.querySelector('#blog-container')
