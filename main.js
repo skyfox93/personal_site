@@ -25,9 +25,7 @@ function playVid(e) {
 document.querySelector('#video-close').addEventListener(
   'click', (e) => { videoContainer.style.display = "none" }
 )
-let parser = new RSSParser();
-parser.parseURL("https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/skylar-salernos-tech-blog", function(err, feed) {
-  if (err) throw err;
+fetch("https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/skylar-salernos-tech-blog").then(res => res.json()).then( (feed) =>{
   console.log(feed.items);
   const blogsContainer = document.querySelector('#blog-container')
 
@@ -35,12 +33,14 @@ parser.parseURL("https://api.rss2json.com/v1/api.json?rss_url=https://medium.com
   let div = document.createElement('div')
   div.className='swiper-slide blog-preview'
   div.innerHTML = `
-  <a href="${item.link}" class="blog-item"><h3> ${item.title}</h3> 
+  <div  class="blog-item">
+  <a href="${item.link}" ><h3> ${item.title}</h3></a>
       <div class="description">
-          ${item["content:encodedSnippet"]}...
+          ${item.content}...
       </div>
-      </a> 
-    `
+  <div>
+`
+  div.addEventListener('click', () => {window.location.href = `${item.link}`})
   blogsContainer.appendChild(div)
   })
   const swiper = new Swiper('.swiper', {
@@ -65,4 +65,6 @@ parser.parseURL("https://api.rss2json.com/v1/api.json?rss_url=https://medium.com
     },
   });
 })
+ 
+  
 
