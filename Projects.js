@@ -2,6 +2,15 @@
 let projects = [
     //Title, description, url, VideoURL
     {
+      description: 'Search Star Trek scripts three ways: keywords, RAG, and an AI agent',
+      title: 'Trek Script Search',
+      url: './trek-search/',
+      imageURL: './images/trek-search.svg',
+      code: 'https://github.com/skyfox93/quote-search',
+      tech: ['Ruby on Rails', 'Postgres', 'OpenAI']
+    },
+
+    {
       description: "Share and edit your friend's photos",
       title: 'Spinoff',
       url: 'https://skyfox93.github.io/newimagedit',

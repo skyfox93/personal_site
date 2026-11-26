@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Trek Script Search · Skylar Salerno</title>
+	<meta name="description" content="Searching Star Trek: from keyword search to agentic AI. Loading the app…">
+	<link rel="icon" href="../favicon.ico">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			--bg: #0A2542;
+			--bg-deep: rgb(1 21 40);
+			--text: #ffffff;
+			--muted: rgba(255, 255, 255, 0.7);
+			--accent: #f2a541;
+		}
+		* { box-sizing: border-box; }
+		html, body { height: 100%; margin: 0; }
+		body {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 24px 16px;
+			background: radial-gradient(ellipse at top, var(--bg), var(--bg-deep) 70%);
+			color: var(--text);
+			font-family: 'Open Sans', sans-serif;
+			text-align: center;
+		}
+		main { max-width: 480px; }
+		.mark { width: 56px; height: 56px; color: var(--accent); animation: pulse 1.6s ease-in-out infinite; }
+		h1 { margin: 20px 0 8px; font-size: 26px; font-weight: 600; letter-spacing: -0.01em; }
+		.dek { margin: 0 0 28px; color: var(--muted); }
+		.bar { height: 4px; border-radius: 2px; background: rgba(255, 255, 255, 0.15); overflow: hidden; }
+		.bar span { display: block; height: 100%; width: 40%; border-radius: 2px; background: var(--accent); animation: slide 1.4s ease-in-out infinite; }
+		.status { min-height: 3em; margin: 16px 0 0; font-size: 14px; color: var(--muted); }
+		a { color: var(--accent); }
+		.done .bar span { width: 100%; animation: none; }
+		.done .mark { animation: none; }
+		@keyframes slide { from { transform: translateX(-100%); } to { transform: translateX(250%); } }
+		@keyframes pulse { 50% { transform: translateY(-4px); opacity: 0.75; } }
+		@media (prefers-reduced-motion: reduce) {
+			.mark, .bar span { animation: none; }
+			.bar span { width: 100%; opacity: 0.5; }
+		}
+	</style>
+</head>
+<body>
+	<main id="loader">
+		<svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4.5 21l7.5-4.2 7.5 4.2L12 2Z" fill="currentColor"/></svg>
+		<h1>Searching Star Trek</h1>
+		<p class="dek">From keyword search to agentic AI</p>
+		<div class="bar" role="progressbar" aria-label="Loading the app"><span></span></div>
+		<p class="status" id="status" aria-live="polite">Starting the app…</p>
+		<noscript><p><a href="https://trek-ai-search-ec44e6a57b50.herokuapp.com/">Open Trek Script Search</a></p></noscript>
+	</main>
+
+	<script>
+		// The app runs on a Heroku dyno that sleeps when idle and takes a while to
+		// wake. This page wakes it in the background and redirects once it answers.
+		// The app is on another origin, so the response can't be read (no-cors);
+		// a quick answer to a second request is the sign that it's awake.
+		const APP = "https://trek-ai-search-ec44e6a57b50.herokuapp.com/";
+		const GIVE_UP_AFTER = 90000; // ms
+		const status = document.getElementById("status");
+		const started = Date.now();
+
+		function ping(timeout) {
+			const controller = new AbortController();
+			const timer = setTimeout(() => controller.abort(), timeout);
+			const t0 = Date.now();
+			return fetch(APP + "?wake=" + t0, { mode: "no-cors", cache: "no-store", signal: controller.signal })
+				.then(() => Date.now() - t0)
+				.finally(() => clearTimeout(timer));
+		}
+
+		function go() {
+			document.body.classList.add("done");
+			status.textContent = "Ready. Opening the app…";
+			location.replace(APP);
+		}
+
+		function giveUp() {
+			status.innerHTML = 'The app is taking longer than usual. <a href="' + APP + '">Open it anyway</a>.';
+		}
+
+		async function wake() {
+			for (;;) {
+				if (Date.now() - started > GIVE_UP_AFTER) return giveUp();
+				try {
+					const ms = await ping(30000);
+					// A fast answer means the app was already running.
+					if (ms < 3000) return go();
+					// A slow answer means it just booted; confirm with a quick second request.
+					const again = await ping(5000);
+					if (again < 3000) return go();
+				} catch (error) {
+					// Network error or timeout while the dyno boots: try again shortly.
+					await new Promise(resolve => setTimeout(resolve, 1500));
+				}
+			}
+		}
+
+		const tick = setInterval(() => {
+			const elapsed = Date.now() - started;
+			if (elapsed > 4000 && !document.body.classList.contains("done") && elapsed <= GIVE_UP_AFTER) {
+				status.textContent = "Waking up the server. This can take up to 30 seconds… (" + Math.round(elapsed / 1000) + "s)";
+			}
+		}, 1000);
+		wake().finally(() => clearInterval(tick));
+	</script>
+</body>
+</html>
