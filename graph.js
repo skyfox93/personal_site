@@ -204,20 +204,20 @@ function step(t) {
     a.vx += fx; a.vy += fy
     b.vx -= fx; b.vy -= fy
   }
-  // Gravity — the focused hub is pulled to the middle and the other hub is pushed away.
-  const hub = focusedHub()
+  // Gravity. With a hub focused, it and its items are pulled into column slots
+  // and the other hub is pushed out of the way.
+  const col = columnLayout()
   for (const node of nodes) {
     let tx = 0, ty = 0, g = 0.004
-    if (hub) {
-      if (node === hub) g = 0.04
-      else if (node.type === 'hub') {
-        const d = Math.hypot(node.x, node.y) || 1
-        tx = (node.x / d) * 520; ty = (node.y / d) * 520; g = 0.02
-      }
-    } else if (!focus && node.type === 'self') g = 0.03
+    const slot = col && col.slots.get(node)
+    node.slot = slot || null
+    node.slotted = !!slot
+    if (slot) continue  // placed directly below
+    if (col && node.type === 'hub') { tx = col.otherHubX; ty = 0; g = 0.02 }
+    else if (!focus && node.type === 'self') g = 0.03
     node.vx += (tx - node.x) * g
     node.vy += (ty - node.y) * g
-    if (!reduceMotion) {
+    if (!reduceMotion && !slot) {
       const amp = node.ex > 0.5 ? 0.02 : 0.06
       node.vx += Math.sin(t * 0.0006 + node.seed) * amp
       node.vy += Math.cos(t * 0.0005 + node.seed * 1.3) * amp
@@ -226,6 +226,14 @@ function step(t) {
   // Integrate
   for (const node of nodes) {
     if (node.fixed) { node.vx = node.vy = 0; continue }
+    if (node.slot) {
+      // Column members glide into their slot, ignoring other forces.
+      const ease = reduceMotion ? 1 : 0.12
+      node.x += (node.slot.x - node.x) * ease
+      node.y += (node.slot.y - node.y) * ease
+      node.vx = node.vy = 0
+      continue
+    }
     node.vx *= 0.82; node.vy *= 0.82
     node.x += node.vx; node.y += node.vy
   }
@@ -240,21 +248,48 @@ function step(t) {
       const ox = a.hw + b.hw + 12 - Math.abs(dx)
       const oy = a.hh + b.hh + 12 - Math.abs(dy)
       if (ox <= 0 || oy <= 0) continue
-      const wa = a.fixed ? 0 : b.fixed ? 1 : 0.5
+      const aHeld = a.fixed || (a.slotted && !b.slotted), bHeld = b.fixed || (b.slotted && !a.slotted)
+      if ((aHeld && bHeld) || (a.slotted && b.slotted)) continue
+      const wa = aHeld ? 0 : bHeld ? 1 : 0.5
       const wb = 1 - wa
       if (ox < oy) {
         const s = Math.sign(dx) || 1
-        if (!a.fixed) a.x -= s * ox * wa * 0.5
-        if (!b.fixed) b.x += s * ox * wb * 0.5
+        if (wa) a.x -= s * ox * wa * 0.5
+        if (wb) b.x += s * ox * wb * 0.5
         const v = (a.vx + b.vx) / 2; a.vx = b.vx = v
       } else {
         const s = Math.sign(dy) || 1
-        if (!a.fixed) a.y -= s * oy * wa * 0.5
-        if (!b.fixed) b.y += s * oy * wb * 0.5
+        if (wa) a.y -= s * oy * wa * 0.5
+        if (wb) b.y += s * oy * wb * 0.5
         const v = (a.vy + b.vy) / 2; a.vy = b.vy = v
       }
     }
   }
+}
+
+/* ------------------------------------------------------------------ *
+ * Column layout: Projects sits left of its cards, Resume right of its cards
+ * ------------------------------------------------------------------ */
+const COL_GAP = 16     // vertical gap between cards (world units)
+const HUB_GAP = 70     // horizontal gap between hub and the column
+function columnLayout() {
+  const hub = focusedHub()
+  if (!hub) return null
+  const side = hub.id === 'projects' ? 1 : -1   // +1: cards to the right of the hub
+  const items = nodes.filter((n) => n.type === 'item' && n.group === hub.id)
+  const colHW = Math.max(...items.map((n) => n.cardHW || 90))
+  const gap = Math.max(HUB_GAP, hub.hw + 40)  // room for the hub's label / résumé button
+  const span = gap + colHW * 2
+  const hubX = -side * span / 2
+  const colX = hubX + side * (gap + colHW)
+  const total = items.reduce((h, n) => h + n.hh * 2, 0) + COL_GAP * (items.length - 1)
+  const slots = new Map([[hub, { x: hubX, y: 0 }]])
+  let y = -total / 2
+  for (const n of items) {
+    slots.set(n, { x: colX, y: y + n.hh })
+    y += n.hh * 2 + COL_GAP
+  }
+  return { hub, items, slots, otherHubX: hubX - side * 420 }
 }
 
 /* ------------------------------------------------------------------ *
@@ -284,10 +319,18 @@ function updateCamera() {
       y0 = Math.min(y0, n.y - n.hh); y1 = Math.max(y1, n.y + n.hh + lab)
     }
     const maxK = focus?.type === 'item' ? 1.7 : focus ? 1.35 : 1.15
-    const k = Math.min(availW / (x1 - x0 + 40), availH / (y1 - y0 + 40))
+    const kW = availW / (x1 - x0 + 40), kH = availH / (y1 - y0 + 40)
+    let k
+    if (focus?.type === 'hub') {
+      // Column view: keep cards readable even if the column is taller than the
+      // screen; it then starts at the top and scrolls.
+      const minK = isMobile() ? 0.9 : 1.2
+      k = Math.min(kW, Math.max(kH, minK))
+    } else k = Math.min(kW, kH)
     camTarget.k = Math.max(0.4, Math.min(maxK, k))
     camTarget.x = (x0 + x1) / 2
-    camTarget.y = (y0 + y1) / 2
+    const visibleH = availH / camTarget.k
+    camTarget.y = y1 - y0 + 40 > visibleH ? y0 - 20 + visibleH / 2 : (y0 + y1) / 2
   }
   cam.x += (camTarget.x - cam.x) * e
   cam.y += (camTarget.y - cam.y) * e
@@ -604,10 +647,16 @@ window.addEventListener('pointerup', () => {
   onNodeClick(node)
 })
 canvas.addEventListener('pointerleave', () => { if (!drag) hover = null })
-canvas.addEventListener('wheel', (e) => {
+window.addEventListener('wheel', (e) => {
   e.preventDefault()
   manualCam = true
-  camTarget.k = Math.max(0.35, Math.min(3, camTarget.k * Math.exp(-e.deltaY * 0.0015)))
+  if (focus?.type === 'hub' && !e.ctrlKey) {
+    // Column view: the wheel scrolls through the cards.
+    camTarget.y += e.deltaY / cam.k
+    camTarget.x += e.deltaX / cam.k
+  } else {
+    camTarget.k = Math.max(0.35, Math.min(3, camTarget.k * Math.exp(-e.deltaY * 0.0015)))
+  }
 }, { passive: false })
 
 function onNodeClick(node) {
